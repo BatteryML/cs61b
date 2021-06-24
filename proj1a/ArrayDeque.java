@@ -1,6 +1,6 @@
 public class ArrayDeque<T> {
     private int nextFirst;
-    public T[] items;
+    private T[] items;
     private int nextLast;
     private int size;
 
@@ -20,27 +20,27 @@ public class ArrayDeque<T> {
         }
         if (size == items.length) {
             /*copy to a larger new array*/
-            T[] Temporary = (T[]) new Object[2 * size];
-            int First = nextFirst + 1;
-            if (First == size) {
-                First = First - size;
+            T[] temporary = (T[]) new Object[2 * size];
+            int first = nextFirst + 1;
+            if (first == size) {
+                first = first - size;
             }
-            int Last = nextLast - 1;
-            if (Last < 0) {
-                Last = size + Last;
+            int last = nextLast - 1;
+            if (last < 0) {
+                last = size + last;
             }
-            for (int i = First; i < First + size; i++) {
+            for (int i = first; i < first + size; i++) {
                 int p;
                 if (i < size) {
                     p = i;
                 } else {
                     p = i - size;
                 }
-                Temporary[i - First + 1] = items[p];
+                temporary[i - first + 1] = items[p];
             }
             nextFirst = 0;
             nextLast = size + 1;
-            items = Temporary;
+            items = temporary;
         }
     }
 
@@ -53,27 +53,27 @@ public class ArrayDeque<T> {
         }
         if (size == items.length) {
             /*copy to a larger new array*/
-            T[] Temporary = (T[]) new Object[2 * size];
-            int First = nextFirst + 1;
-            if (First == size) {
-                First = First - size;
+            T[] temporary = (T[]) new Object[2 * size];
+            int first = nextFirst + 1;
+            if (first == size) {
+                first = first - size;
             }
-            int Last = nextLast - 1;
-            if (Last < 0) {
-                Last = size + Last;
+            int last = nextLast - 1;
+            if (last < 0) {
+                last = size + last;
             }
-            for (int i = First; i < First + size; i++) {
+            for (int i = first; i < first + size; i++) {
                 int p;
                 if (i < size) {
                     p = i;
                 } else {
                     p = i - size;
                 }
-                Temporary[i - First + 1] = items[p];
+                temporary[i - first + 1] = items[p];
             }
             nextFirst = 0;
             nextLast = size + 1;
-            items = Temporary;
+            items = temporary;
         }
     }
 
@@ -89,11 +89,11 @@ public class ArrayDeque<T> {
         if (size == 0) {
             System.out.print("");
         } else {
-            int First = nextFirst + 1;
-            if (First == items.length) {
-                First = First - items.length;
+            int first = nextFirst + 1;
+            if (first == items.length) {
+                first = first - items.length;
             }
-            for (int i = First; i < First + size; i++) {
+            for (int i = first; i < first + size; i++) {
                 int p;
                 if (i < items.length) {
                     p = i;
@@ -106,15 +106,15 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        int First = nextFirst + 1;
-        if (First == items.length) {
-            First = First - items.length;
+        int first = nextFirst + 1;
+        if (first == items.length) {
+            first = first - items.length;
         }
-        if (items[First] == null) {
+        if (items[first] == null) {
             return null;
         } else {
-            T removeditem = items[First];
-            items[First] = null;
+            T removeditem = items[first];
+            items[first] = null;
             nextFirst += 1;
             if (nextFirst == items.length) {
                 nextFirst = nextFirst - items.length;
@@ -122,42 +122,42 @@ public class ArrayDeque<T> {
             size -= 1;
 
             if (size < (items.length / 4) && items.length >= 16) {
-                T[] Temporary = (T[]) new Object[items.length / 2];
-                First = nextFirst + 1;
-                if (First == items.length) {
-                    First = First - items.length;
+                T[] temporary = (T[]) new Object[items.length / 2];
+                first = nextFirst + 1;
+                if (first == items.length) {
+                    first = first - items.length;
                 }
-                int Last = nextLast - 1;
-                if (Last < 0) {
-                    Last = items.length + Last;
+                int last = nextLast - 1;
+                if (last < 0) {
+                    last = items.length + last;
                 }
-                for (int i = First; i < First + size; i++) {
+                for (int i = first; i < first + size; i++) {
                     int p;
                     if (i < items.length) {
                         p = i;
                     } else {
                         p = i - items.length;
                     }
-                    Temporary[i - First + 1] = items[p];
+                    temporary[i - first + 1] = items[p];
                 }
                 nextFirst = 0;
                 nextLast = size + 1;
-                items = Temporary;
+                items = temporary;
             }
             return removeditem;
         }
     }
 
     public T removeLast() {
-        int Last = nextLast - 1;
-        if (Last < 0) {
-            Last = items.length + Last;
+        int last = nextLast - 1;
+        if (last < 0) {
+            last = items.length + last;
         }
-        if (items[Last] == null) {
+        if (items[last] == null) {
             return null;
         } else {
-            T removeditem = items[Last];
-            items[Last] = null;
+            T removeditem = items[last];
+            items[last] = null;
             nextLast -= 1;
             if (nextLast < 0) {
                 nextLast = items.length + nextLast;
@@ -165,27 +165,27 @@ public class ArrayDeque<T> {
             size -= 1;
 
             if (size < (items.length / 4) && items.length >= 16) {
-                T[] Temporary = (T[]) new Object[items.length / 2];
-                int First = nextFirst + 1;
-                if (First == items.length) {
-                    First = First - items.length;
+                T[] temporary = (T[]) new Object[items.length / 2];
+                int first = nextFirst + 1;
+                if (first == items.length) {
+                    first = first - items.length;
                 }
-                Last = nextLast - 1;
-                if (Last < 0) {
-                    Last = items.length + Last;
+                last = nextLast - 1;
+                if (last < 0) {
+                    last = items.length + last;
                 }
-                for (int i = First; i < First + size; i++) {
+                for (int i = first; i < first + size; i++) {
                     int p;
                     if (i < items.length) {
                         p = i;
                     } else {
                         p = i - items.length;
                     }
-                    Temporary[i - First + 1] = items[p];
+                    temporary[i - first + 1] = items[p];
                 }
                 nextFirst = 0;
                 nextLast = size + 1;
-                items = Temporary;
+                items = temporary;
             }
             return removeditem;
         }

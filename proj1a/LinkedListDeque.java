@@ -2,10 +2,10 @@ public class LinkedListDeque<T> {
     private final GenNode sentinel;
     private int size;
 
-    public class GenNode {
-        public GenNode prev;
-        public T item;
-        public GenNode next;
+    private class GenNode {
+        private GenNode prev;
+        private T item;
+        private GenNode next;
 
         public GenNode(GenNode p, T i, GenNode n) {
             prev = p;
@@ -70,6 +70,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         GenNode first = sentinel.next;
         sentinel.next = first.next;
         first.next.prev = sentinel;
@@ -80,6 +83,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         GenNode last = sentinel.prev;
         sentinel.prev = last.prev;
         last.prev.next = sentinel;
