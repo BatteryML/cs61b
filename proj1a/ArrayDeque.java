@@ -49,7 +49,7 @@ public class ArrayDeque<T> {
         nextLast += 1;
         size += 1;
         if (nextLast > items.length - 1) {
-            nextLast = items.length - nextFirst;
+            nextLast = items.length - nextLast;
         }
         if (size == items.length) {
             /*copy to a larger new array*/
