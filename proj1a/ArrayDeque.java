@@ -193,7 +193,7 @@ public class ArrayDeque<T> {
 
     public T get(int index) {
         int i = nextFirst + 1 + index;
-        if (i > items.length) {
+        if (i > items.length - 1) {
             i = i - items.length;
         }
         return items[i];
